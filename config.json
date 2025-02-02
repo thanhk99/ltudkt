@@ -1,0 +1,13 @@
+{
+    "app_name": "Quản lý học viên ngoại ngữ",
+    "window_size": {
+      "width": 800,
+      "height": 600
+    },
+    "database": {
+      "file_path": "data/students.json",
+      "auto_save": true
+    },
+    "languages": ["Tiếng Anh", "Tiếng Nhật", "Tiếng Hàn"],
+    "default_language": "Tiếng Anh"
+  }
