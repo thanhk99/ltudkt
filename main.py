@@ -1,6 +1,6 @@
 import json
 from PyQt5.QtWidgets import QApplication
-from fe import MainWindow
+from fe.Home import Ui_Home
 from be.mainBe import MainBackend
 
 class App:
@@ -12,13 +12,12 @@ class App:
             self.config = json.load(config_file)
         
         # Khởi tạo giao diện với cấu hình
-        self.main_window = MainWindow(self.config)
         self.backend = MainBackend()
 
     def run(self):
-        self.main_window.show()
-        self.app.exec_()
-
+        # self.main_window.show()
+        # self.app.exec_()
+        self.backend.run()
 if __name__ == "__main__":
     app = App()
     app.run()

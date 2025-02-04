@@ -5,7 +5,7 @@ class Student:
         self.address = address
         self.phone = phone
         self.language = language
-
+    
 class EnglishStudent(Student):
     def __init__(self, id, name, address, phone, initial_level, exam_score, target_score):
         super().__init__(id, name, address, phone, "English")
