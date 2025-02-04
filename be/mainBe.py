@@ -1,5 +1,5 @@
-from .manageStudent import ManageStudent
-from .student import Student, EnglishStudent, JapaneseStudent, KoreanStudent
+from manageStudent import ManageStudent
+from student import Student
 
 class MainBackend():
     def __init__(self):
@@ -20,7 +20,7 @@ class MainBackend():
             choice = input("Chọn chức năng: ")
             match choice:
                 case "1":
-                    ManageStudent.add_student(self=self.manager, student=Student.create_student())
+                    ManageStudent.add_student(self=self.manager, student=Student().create_student())
                 case "2":
                     self.edit_student()
                 case "3":
@@ -40,3 +40,5 @@ class MainBackend():
                 case _:
                     print("Chức năng không hợp lệ")
                     return
+                
+MainBackend.run(self=MainBackend())
