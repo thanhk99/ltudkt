@@ -1,6 +1,6 @@
 
 class Student:
-    def __init__(self, id, name, address, phone, language):
+    def __init__(self, id, name, address ,phone, language):
         self.id = id  # Căn cước công dân
         self.name = name
         self.address = address

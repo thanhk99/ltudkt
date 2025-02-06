@@ -90,11 +90,12 @@ def createStudent():
 # def resultStudent():
 
 s=createStudent()
-print(s.address)
-print(s.name)
-print(s.phone)
 print(s.id)
+print(s.name)
+print(s.address)
+print(s.phone)
 print(s.language)
+
 
 
     

@@ -1,9 +1,13 @@
+import random
+from student import Student
+from createData import createStudent
 class ManageStudent:
     def __init__(self):
         self.students = []  # Danh sách sinh viên
 
     def add_student(self, student):
         self.students.append(student)
+        return True
 
     def edit_student(self, student_id, new_info):
         for student in self.students:
@@ -13,8 +17,8 @@ class ManageStudent:
                 break
 
     def delete_student(self, student_id):
-        self.students = [s for s in self.students if s.id != student_id]
-
+         self.students = [s for s in self.students if s.id != student_id]
+    
     def search_student(self, search_term):
         # Tìm kiếm theo ID hoặc số điện thoại
         return [s for s in self.students if s.id == search_term or s.phone == search_term]
