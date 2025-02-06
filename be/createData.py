@@ -16,12 +16,12 @@ def createPhone():
         phone+=str(random.randint(0,9))
     return phone
 
-def get_file_path(filename):
-    base_dir = r'd:\HK2_2024-2025\LT_KTHT\ltudkt\be'
-    return os.path.join(base_dir, filename)
+
 
 def createCC():
-    file_path = get_file_path('new2.csv')
+    file_path = __file__  # Lấy đường dẫn của file hiện tại
+    directory_path = os.path.dirname(file_path)
+    file_path=os.path.join(directory_path, 'new2.csv')
     try:
         df = pd.read_csv(file_path, dtype={'ma': str})  # Đọc cột 'ma' dưới dạng chuỗi
 
@@ -51,21 +51,38 @@ def createSexual():
     return random.choice(sexual)
 
 def createCourse():
-    listLeagues=['English','Japanese','Korean']
-    listLevelEn=['IELTS ','TOEFL ']
-    listLevelJa=['N5','N4','N3','N2','N1']
-    listLevelKo=['Sơ cấp','Trung cấp','Cao cấp']
-    course={}
-    course['leangue']=random.choice(listLeagues)
-    if course['leangue']=='English':
-        course['level']=random.choice(listLevelEn)
-        course['goal']='Improve English skills'
-    elif course['leangue']=='Japanese':
-        course['level']=random.choice(listLevelJa)
-        course['goal']='Pass JLPT exam'
-    elif course['leangue']=='Korean':
-        course['level']=random.choice(listLevelKo)
-        course['goal']='Pass TOPIK exam'
+    listLeagues = ['English', 'Japanese', 'Korean']
+    listLevelEn = ['IELTS', 'TOEFL']  # Nên dùng số cho IELTS, TOEFL
+    listLevelJa = ['N5', 'N4', 'N3', 'N2', 'N1']
+    listLevelKo = ['Sơ cấp', 'Trung cấp', 'Cao cấp']
+    course = {}
+    course['language'] = random.choice(listLeagues)  # Sửa lỗi chính tả "leangue"
+
+    if course['language'] == 'English':
+        course['level_type'] = random.choice(listLevelEn) # Loại level (IELTS hay TOEFL)
+        if course['level_type'] == 'IELTS':
+            course['level'] = random.choice([i/2 for i in range(0, 19)])  # IELTS từ 0.0 - 9.0, bước 0.5
+            course['goal'] = random.choice([i/2 for i in range(int(course['level']*2), 19)]) # Goal >= level, max 9
+        else: #TOEFL
+            course['level'] = random.randint(0, 120)  # TOEFL từ 0 - 120
+            course['goal'] = random.randint(course['level'], 120) # Goal >= level, max 120
+    elif course['language'] == 'Japanese':
+        course['level'] = random.choice(listLevelJa)
+        # Đặt mục tiêu phù hợp với level tiếng Nhật. Ví dụ:
+        levels = {'N5': 1, 'N4': 2, 'N3': 3, 'N2': 4, 'N1': 5}
+        current_level_num = levels[course['level']]
+        possible_goals = [level for level, num in levels.items() if num >= current_level_num]
+        course['goal'] = random.choice(possible_goals)
+
+    elif course['language'] == 'Korean':
+        course['level'] = random.choice(listLevelKo)
+        # Tương tự tiếng Nhật, đặt mục tiêu phù hợp
+        levels = {'Sơ cấp': 1, 'Trung cấp': 2, 'Cao cấp': 3}
+        current_level_num = levels[course['level']]
+        possible_goals = [level for level, num in levels.items() if num >= current_level_num]
+        course['goal'] = random.choice(possible_goals)
+
+    return course
 
 def createStudent():
     student = {}
@@ -78,8 +95,10 @@ def createStudent():
     student['Khoa hoc']=createCourse()
     return student
 
-createStudent()
-print(createStudent())
+# createStudent()
+# print(createStudent())
+for _ in range(10):
+    print(createCourse())
 
     
 
