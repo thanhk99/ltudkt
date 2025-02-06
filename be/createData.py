@@ -1,6 +1,7 @@
 import random
 import pandas as pd
 import os
+from student import Student
 def createName():
     firstName=['Phạm','Nguyễn','Trần','Lê','Huỳnh','Võ','Đặng','Bùi','Đỗ','Hồ','Ngô','Dương','Lý','Đào','Đinh','Kim','Phan','Vũ','Tạ','Trịnh','Chu','La','Lâm','Lưu','Mai','Quách','Thái','Tô','Hoa','Tăng','Đoàn','Trương','Nghiêm','Đinh','Đặng']
     middleName=['Thị','Văn','Đình','Ngọc','Hữu','Thế','Quốc','Văn','Thành','Hồng','Đức','Minh']
@@ -15,8 +16,6 @@ def createPhone():
     for i in range(7):
         phone+=str(random.randint(0,9))
     return phone
-
-
 
 def createCC():
     file_path = __file__  # Lấy đường dẫn của file hiện tại
@@ -85,20 +84,18 @@ def createCourse():
     return course
 
 def createStudent():
-    student = {}
-    student['name'] = createName()
-    student['phone'] = createPhone()
     tinh , cancuoc = createCC()
-    student['local'] = tinh
-    student['can cuoc'] = cancuoc
-    student['Gioi tinh'] = createSexual()
-    student['Khoa hoc']=createCourse()
+    student= Student(cancuoc,createName(),tinh,createPhone(),createCourse())
     return student
+# def resultStudent():
 
-# createStudent()
-# print(createStudent())
-for _ in range(10):
-    print(createCourse())
+s=createStudent()
+print(s.address)
+print(s.name)
+print(s.phone)
+print(s.id)
+print(s.language)
+
 
     
 

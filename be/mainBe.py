@@ -1,5 +1,6 @@
 from manageStudent import ManageStudent
 from student import Student
+from createData import createStudent
 
 class MainBackend():
     def __init__(self):
@@ -20,7 +21,7 @@ class MainBackend():
             choice = input("Chọn chức năng: ")
             match choice:
                 case "1":
-                    ManageStudent.add_student(self=self.manager, student=Student().create_student())
+                    ManageStudent.add_student(self=self.manager, createStudent())
                 case "2":
                     self.edit_student()
                 case "3":
