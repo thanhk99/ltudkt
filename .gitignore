@@ -1,3 +1,4 @@
 # bỏ qua thư mục pycache
 be/__pycache__/
+fe/__pycache__/
 .venv/
