@@ -41,3 +41,7 @@ class ManageStudent:
     def top_students(self, language):
         # Top 5 sinh viên xuất sắc nhất
         pass
+    def getListStudents(self):
+        return self.students
+    def showStudent(self,student):
+        print(student.__dict__)

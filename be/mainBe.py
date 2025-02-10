@@ -22,7 +22,6 @@ class MainBackend():
             match choice:
                 case "1":
                     student = createStudent()
-                    a = ManageStudent.add_student(self.manager, student)
                     if self.manager.add_student(student):
                         print("Thêm người học thành công")
                         print(student.__dict__)
@@ -45,7 +44,8 @@ class MainBackend():
                                     case "name":
                                         new_name = createName()
                                         a = ManageStudent.edit_student(self.manager, s1.id , new_name)
-                                        if a in self.manager.students:
+                                        print(self.manager.getListStudents())
+                                        if a in self.manager.getListStudents():
                                             print("Sửa thông tin người học thành công")
                                         else:
                                             print("Sửa thông tin người học thất bại")
@@ -92,8 +92,6 @@ class MainBackend():
                             case _:
                                 print("Chức năng không hợp lệ")
                                 return
-
-                        
                 case "3":
                     s1 = createStudent()
                     if self.manager.delete_student(s1.id):
@@ -101,11 +99,31 @@ class MainBackend():
                     else:
                         print("Xóa người học thất bại")
                 case "4":
-                    self.search_student()
+                    id=input("Nhập cccd hoặc tên của người học : ")
+                    students=self.manager.getListStudents()
+                    if id.isdigit():
+                        for s in students:
+                            if id in s.id :
+                                print("Tên người học : ", s.name)
+                                print("CCCD : ", s.id)
+                                print("Địa chỉ : ", s.address)
+                    else:
+                        for s in students:
+                            if id in s.name :
+                                print("Tên người học : ", s.name)
+                                print("CCCD : ", s.id)
+                                print("Địa chỉ : ", s.address)
+                    print("Tìm kiếm hoàn tất")
                 case "5":
-                    self.list_students()
+                    self.showList()
                 case "6":
-                    self.list_students_by_language()
+                    students=self.manager.getListStudents()
+                    print("Nhập ngôn ngữ muốn tìm : ")
+                    language=input()
+                    for s in students:
+                        if s.language['language']== language:
+                            self.manager.showStudent(s)
+                    print("Tìm kiếm hoàn tất")
                 case "7":
                     self.calculate_success_rate()
                 case "8":
@@ -115,5 +133,12 @@ class MainBackend():
                 case _:
                     print("Chức năng không hợp lệ")
                     return
-                
+    def showList(self):
+        students=self.manager.getListStudents()
+        if len(students)==0:
+            print("khong co sinh vien nao")
+        else:
+            for student in students:
+                print(student.language['language'])
+                self.manager.showStudent(student)
 MainBackend.run(self=MainBackend())
