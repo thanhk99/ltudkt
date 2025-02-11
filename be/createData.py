@@ -49,11 +49,12 @@ def createSexual():
     sexual=['Nam','Nữ']
     return random.choice(sexual)
 
+
 def createCourse():
     listLeagues = ['English', 'Japanese', 'Korean']
     listLevelEn = ['IELTS', 'TOEFL']  # Nên dùng số cho IELTS, TOEFL
-    listLevelJa = ['N5', 'N4', 'N3', 'N2', 'N1']
-    listLevelKo = ['Sơ cấp', 'Trung cấp', 'Cao cấp']
+    listLevelJa = ['N1', 'N2', 'N3', 'N4']
+    listLevelKo = ['Sơ cấp', 'Trung cấp']
     course = {}
     course['language'] = random.choice(listLeagues)  # Sửa lỗi chính tả "leangue"
 
@@ -66,21 +67,22 @@ def createCourse():
             course['level'] = random.randint(0, 120)  # TOEFL từ 0 - 120
             course['goal'] = random.randint(course['level'], 120) # Goal >= level, max 120
     elif course['language'] == 'Japanese':
+        course['level_type'] == 'Japanese'
         course['level'] = random.choice(listLevelJa)
         # Đặt mục tiêu phù hợp với level tiếng Nhật. Ví dụ:
-        levels = {'N5': 1, 'N4': 2, 'N3': 3, 'N2': 4, 'N1': 5}
+        levels = {'N1': 1, 'N2': 2, 'N3': 3, 'N4': 4, 'N5': 5}
         current_level_num = levels[course['level']]
-        possible_goals = [level for level, num in levels.items() if num >= current_level_num]
+        possible_goals = [level for level, num in levels.items() if num > current_level_num]
         course['goal'] = random.choice(possible_goals)
 
     elif course['language'] == 'Korean':
+        course['level_type'] == 'Korean'
         course['level'] = random.choice(listLevelKo)
         # Tương tự tiếng Nhật, đặt mục tiêu phù hợp
         levels = {'Sơ cấp': 1, 'Trung cấp': 2, 'Cao cấp': 3}
         current_level_num = levels[course['level']]
-        possible_goals = [level for level, num in levels.items() if num >= current_level_num]
+        possible_goals = [level for level, num in levels.items() if num > current_level_num]
         course['goal'] = random.choice(possible_goals)
-
     return course
 
 def createStudent():
@@ -91,7 +93,10 @@ def createStudent():
 
 s=createStudent()
 
-
+print(s.id)
+print(s.name)
+print(s.address)
+print(s.language)
 
     
 

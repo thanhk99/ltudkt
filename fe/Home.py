@@ -10,6 +10,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+import AddHv
+
+
 
 class Ui_Home(object):
     def setupUi(self, Home):
@@ -92,3 +95,4 @@ if __name__ == "__main__":
     ui.setupUi(Home)
     Home.show()
     sys.exit(app.exec_())
+

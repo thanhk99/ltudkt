@@ -17,7 +17,8 @@ class MainBackend():
             print("6. Hiển thị danh sách người học theo ngôn ngữ đăng kí")
             print("7. Thống kê tỉ lệ người học đạt mục tiêu")
             print("8. Danh sách người học chưa đạt mục tiêu")
-            print("9. Thoát")
+            print("9. Danh sách người học xuất sắc nhất")
+            print("10. Thoát")
             choice = input("Chọn chức năng: ")
             match choice:
                 case "1":
@@ -93,8 +94,8 @@ class MainBackend():
                                 print("Chức năng không hợp lệ")
                                 return
                 case "3":
-                    s1 = createStudent()
-                    if self.manager.delete_student(s1.id):
+                    cccd=input("Nhập cccd muốn xóa : ")
+                    if self.manager.delete_student(cccd):
                         print("Xóa người học thành công")
                     else:
                         print("Xóa người học thất bại")
@@ -104,31 +105,30 @@ class MainBackend():
                     if id.isdigit():
                         for s in students:
                             if id in s.id :
-                                print("Tên người học : ", s.name)
-                                print("CCCD : ", s.id)
-                                print("Địa chỉ : ", s.address)
+                                print(s.__dict__)
                     else:
                         for s in students:
                             if id in s.name :
-                                print("Tên người học : ", s.name)
-                                print("CCCD : ", s.id)
-                                print("Địa chỉ : ", s.address)
+                                print(s.__dict__)
                     print("Tìm kiếm hoàn tất")
                 case "5":
                     self.showList()
                 case "6":
                     students=self.manager.getListStudents()
-                    print("Nhập ngôn ngữ muốn tìm : ")
-                    language=input()
+                    language=input("Nhập ngôn ngữ muốn tìm (Enghlish / Japanese / korean) : ")
                     for s in students:
                         if s.language['language']== language:
                             self.manager.showStudent(s)
                     print("Tìm kiếm hoàn tất")
                 case "7":
-                    self.calculate_success_rate()
+                    self.manager.exam()
+                    # self.manager.calculate_success_rate()
+                    # print("Tỉ lệ người học đạt mục tiêu :" , self.manager.calculate_success_rate() ,"%")
                 case "8":
-                    self.list_failed_students()
+                    self.manager.list_failed_students()
                 case "9":
+                    self.manager.top_students()
+                case "10":
                     break
                 case _:
                     print("Chức năng không hợp lệ")
