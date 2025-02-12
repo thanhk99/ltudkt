@@ -47,15 +47,14 @@ class ManageStudent:
         print(student.__dict__)
     def exam(self):
         for student in self.students:
-            print(student.language['level_type'])
-            # if student.language['language'] == 'Japanese':
-            #     listLevelJa = ['N1', 'N2', 'N3', 'N4','N5']
-            #     student.language['level']=random.choice(listLevelJa)
-            # if student.language['language'] == 'Korean':
-            #     listLevelKo = ['Sơ cấp', 'Trung cấp','Cao cấp']
-            #     student.language['level']=random.choice(listLevelJa)
-            # else:
-            #     if student.language['level_type'] == 'IELTS':
-            #         student.language['level'] = random.choice([i/2 for i in range(0, 19)])  
-            #     else: #TOEFL
-            #         student.language['level'] = random.randint(0, 120) 
+            if student.language['language'] == 'Japanese':
+                listLevelJa = ['N1', 'N2', 'N3', 'N4','N5']
+                student.language['level']=random.choice(listLevelJa)
+            elif student.language['language'] == 'Korean':
+                listLevelKo = ['Sơ cấp', 'Trung cấp','Cao cấp']
+                student.language['level']=random.choice(listLevelKo)
+            else:
+                if student.language['level_type'] == 'IELTS':
+                    student.language['level'] = random.choice([i/2 for i in range(0, 19)])  
+                else: #TOEFL
+                    student.language['level'] = random.randint(0, 120) 
