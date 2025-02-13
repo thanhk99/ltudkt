@@ -15,7 +15,7 @@ class MainBackend():
             print("4. Tìm kiếm người học")
             print("5. Xem danh sách người học")
             print("6. Hiển thị danh sách người học theo ngôn ngữ đăng kí")
-            print("7. Thống kê tỉ lệ người học đạt mục tiêu")
+            print("7. Tỉ lệ người học đạt mục tiêu")
             print("8. Danh sách người học chưa đạt mục tiêu")
             print("9. Danh sách người học xuất sắc nhất")
             print("10. Thoát")
@@ -122,12 +122,16 @@ class MainBackend():
                     print("Tìm kiếm hoàn tất")
                 case "7":
                     self.manager.exam()
+                    self.manager.calculate_success_rate()
+                    print("Tỉ lệ người học đạt mục tiêu :" , self.manager.calculate_success_rate() ,"%")
                     # self.manager.calculate_success_rate()
                     # print("Tỉ lệ người học đạt mục tiêu :" , self.manager.calculate_success_rate() ,"%")
                 case "8":
+                    self.manager.exam()
                     self.manager.list_failed_students()
                 case "9":
-                    self.manager.top_students()
+                    self.manager.exam()
+                    self.manager.top_students(self.manager)
                 case "10":
                     break
                 case _:
