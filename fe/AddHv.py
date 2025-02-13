@@ -180,6 +180,12 @@ class Ui_MainWindow(object):
         self.lineEdit_6 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_6.setGeometry(QtCore.QRect(1080, 250, 101, 31))
         self.lineEdit_6.setObjectName("lineEdit_6")
+        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_6.setGeometry(QtCore.QRect(910, 310, 181, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setObjectName("pushButton_6")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1246, 26))
@@ -230,6 +236,7 @@ class Ui_MainWindow(object):
         self.comboBox_4.setItemText(1, _translate("MainWindow", "TOEFL"))
         self.label_11.setText(_translate("MainWindow", "Trình độ ban đầu :"))
         self.label_12.setText(_translate("MainWindow", "Mục tiêu :"))
+        self.pushButton_6.setText(_translate("MainWindow", "Thêm mới"))
 
 
 if __name__ == "__main__":

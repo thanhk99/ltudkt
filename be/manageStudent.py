@@ -109,7 +109,16 @@ class ManageStudent:
         if excellent_students:
             print(f"Danh sách sinh viên xuất sắc ngôn ngữ {language}:")
         for student in excellent_students:
-            print(f"- Tên: {student.name}, Trình độ: {student.language['level']}")
+            if student.language['language'] == 'Japanese':
+                print(f"- Tên: {student.name} , Ngôn ngữ: {student.language['language']} , Trình độ: {student.language['level']}")
+            elif student.language['language'] == 'korean':
+                print(f"- Tên: {student.name} , Ngôn ngữ: {student.language['language']} , Trình độ: {student.language['level']}")
+            elif student.language['level_type'] == 'IELTS':
+                print(f"- Tên: {student.name} , Ngôn ngữ: {student.language['language']} , Chứng chỉ : {student.language['level_type']} , Trình độ : {student.language['level']}")
+            elif student.language['level_type'] == 'TOEFL':
+                print(f"- Tên: {student.name} , Ngôn ngữ: {student.language['language']} , Chứng chỉ : {student.language['level_type']} , Trình độ : {student.language['level']}")
+            else:
+                print("Không có sinh viên nào chưa đạt mục tiêu.")
         else:
             print(f"Không có sinh viên nào xuất sắc ngôn ngữ {language}.")
 

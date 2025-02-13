@@ -180,6 +180,12 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.pushButton_5.setFont(font)
         self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_6.setGeometry(QtCore.QRect(870, 320, 181, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setObjectName("pushButton_6")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1251, 26))
@@ -206,7 +212,7 @@ class Ui_MainWindow(object):
         self.comboBox_3.setItemText(6, _translate("MainWindow", "Trung cấp"))
         self.comboBox_3.setItemText(7, _translate("MainWindow", "Cao cấp"))
         self.label_11.setText(_translate("MainWindow", "Trình độ ban đầu :"))
-        self.label.setText(_translate("MainWindow", "Thêm mới học viên"))
+        self.label.setText(_translate("MainWindow", "Sửa thông tin "))
         self.label_5.setText(_translate("MainWindow", "Địa chỉ :"))
         self.comboBox_4.setItemText(0, _translate("MainWindow", "IELTS"))
         self.comboBox_4.setItemText(1, _translate("MainWindow", "TOEFL"))
@@ -230,6 +236,7 @@ class Ui_MainWindow(object):
         self.comboBox_2.setItemText(6, _translate("MainWindow", "Trung cấp"))
         self.comboBox_2.setItemText(7, _translate("MainWindow", "Cao cấp"))
         self.pushButton_5.setText(_translate("MainWindow", "Thống kê"))
+        self.pushButton_6.setText(_translate("MainWindow", "Sửa thông tin"))
 
 
 if __name__ == "__main__":
