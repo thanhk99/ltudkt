@@ -1,6 +1,6 @@
-from manageStudent import ManageStudent
-from student import Student
-from createData import createCC, createStudent , createName , createPhone
+from be.manageStudent import ManageStudent
+from be.student import Student
+from be.createData import createCC, createStudent , createName , createPhone
 
 class MainBackend():
     def __init__(self):
@@ -137,6 +137,11 @@ class MainBackend():
                 case _:
                     print("Chức năng không hợp lệ")
                     return
+    def createStudent():
+        manager = ManageStudent()
+        student = createStudent()
+        manager.add_student(student)
+        print('createStudent')
     def showList(self):
         students=self.manager.getListStudents()
         if len(students)==0:
@@ -145,4 +150,3 @@ class MainBackend():
             for student in students:
                 print(student.language['language'])
                 self.manager.showStudent(student)
-MainBackend.run(self=MainBackend())

@@ -1,6 +1,6 @@
 import random
-from student import Student
-from createData import createStudent
+from .student import Student
+from .createData import createStudent
 class ManageStudent:
     def __init__(self):
         self.students = []  # Danh sách sinh viên

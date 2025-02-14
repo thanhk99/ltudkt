@@ -1,7 +1,7 @@
 import json
 from PyQt5.QtWidgets import QApplication
 from fe.Home import Ui_Home
-from be.mainBe import MainBackend
+from mainBe import MainBackend
 
 class App:
     def __init__(self):

@@ -1,7 +1,7 @@
 import random
 import pandas as pd
 import os
-from student import Student
+from .student import Student
 def createName():
     firstName=['Phạm','Nguyễn','Trần','Lê','Huỳnh','Võ','Đặng','Bùi','Đỗ','Hồ','Ngô','Dương','Lý','Đào','Đinh','Kim','Phan','Vũ','Tạ','Trịnh','Chu','La','Lâm','Lưu','Mai','Quách','Thái','Tô','Hoa','Tăng','Đoàn','Trương','Nghiêm','Đinh','Đặng']
     middleName=['Thị','Văn','Đình','Ngọc','Hữu','Thế','Quốc','Văn','Thành','Hồng','Đức','Minh']
