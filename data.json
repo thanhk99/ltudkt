@@ -58,5 +58,17 @@
             "level": "N3",
             "goal": "N5"
         }
+    },
+    {
+        "id": "1",
+        "name": "1",
+        "address": "1",
+        "phone": "1",
+        "language": {
+            "language": "English",
+            "level_type": "IELTS",
+            "level": "1",
+            "goal": "1"
+        }
     }
 ]

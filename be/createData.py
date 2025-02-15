@@ -23,18 +23,13 @@ def createCC():
     file_path=os.path.join(directory_path, 'new2.csv')
     try:
         df = pd.read_csv(file_path, dtype={'ma': str})  # Đọc cột 'ma' dưới dạng chuỗi
-
-
         # Đảm bảo tất cả mã tỉnh có đúng 3 số
         df['ma'] = df['ma'].str.zfill(3)  # Thêm số 0 nếu thiếu
-
         # Tạo dictionary ánh xạ tỉnh -> mã tỉnh
         local_dict = dict(zip(df['tinh'], df['ma']))
-
         # Chọn ngẫu nhiên một tỉnh
         selected_tinh = random.choice(list(local_dict.keys()))
         ma_tinh = local_dict[selected_tinh]  # Lấy mã tỉnh tương ứng
-
         # Sinh số ngẫu nhiên cho 9 số còn lại
         cc_number = ma_tinh
         for _ in range(9):

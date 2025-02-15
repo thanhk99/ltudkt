@@ -4,6 +4,7 @@ from PyQt5.QtCore import Qt
 import tkinter as tk
 from tkinter import messagebox
 from mainBe import MainBackend
+from be.student import Student
 import fe.AddHv as AddHv , fe.Home , fe.Search , fe.HomeTk , fe.Edit 
 import sys
 ui = ''
@@ -26,16 +27,43 @@ def AddHvUi(): #thêm học viên : Thêm nhanh với dự liệu được tạo
     ui.btn_them.clicked.connect(AddHvUi)
     ui.pushButton_3.clicked.connect(SearchHv)
     ui.pushButton_5.clicked.connect(HomeTkHv)
-    # ui.pushButton_6.clicked.connect()
-    ui.pushButton_7.clicked.connect(lambda:on_add_student()) #thêm nhanh
+    ui.pushButton_6.clicked.connect(lambda:addStudent())
+    ui.pushButton_7.clicked.connect(lambda:quickAddStudent()) #thêm nhanh
     MainWindow.show()
-def on_add_student():
-        be=MainBackend()
-        if MainBackend.createStudent(be):  
-            messagebox.showinfo( "Thông báo", "Thêm học viên thành công")
-        else:
-            messagebox.showwarning( "Thông báo", "Thêm học viên không thành công")
-
+def quickAddStudent():
+    be=MainBackend()
+    if MainBackend.createStudent(be):  
+        messagebox.showinfo( "Thông báo", "Thêm học viên thành công")
+    else:
+        messagebox.showwarning( "Thông báo", "Thêm học viên không thành công")
+def addStudent():
+    be=MainBackend()
+    lang=ui.comboBox.currentText()
+    id=ui.lineEdit.text()
+    name=ui.lineEdit_2.text()
+    address=ui.lineEdit_3.text()
+    phone=ui.lineEdit_4.text()
+    course = {}
+    course['language']=lang
+    if lang== 'English':
+        course['level_type']=ui.comboBox_4.currentText()
+        course['level']=ui.lineEdit_5.text()
+        course['goal']=ui.lineEdit_6.text()
+    else: 
+        course['level_type']=lang
+        course['level']=ui.comboBox_2.currentText()
+        course['goal']=ui.comboBox_3.currentText()
+    s=Student(id,name,address,phone,course)
+    if MainBackend.regexAddress(address):
+        if MainBackend.regexPhone(phone):
+            if MainBackend.regexName(name):
+                if MainBackend.regexId(id):
+    # if MainBackend.regexName(name):
+    #     messagebox.showinfo( "Thông báo", "Tên không hợp lệ")
+    # if MainBackend.addStudent(be,s):
+    #     messagebox.showinfo( "Thông báo", "Thêm học viên thành công")
+    # else:
+    #     messagebox.showwarning( "Thông báo", "Thêm học viên không thành công")
 def SearchHv():
     global ui  
     ui = fe.Search.Ui_MainWindow()

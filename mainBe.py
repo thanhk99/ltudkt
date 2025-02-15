@@ -3,6 +3,8 @@ from be.student import Student
 from be.createData import createCC, createStudent , createName , createPhone
 import json
 import os
+import re
+import pandas as pd
 class MainBackend():
     def __init__(self):
         self.manager = ManageStudent()
@@ -140,20 +142,20 @@ class MainBackend():
                     return
     def createStudent(self):
         student = createStudent()
-        self.manager.add_student(student)
+        self.addStudent(student)
+        return True
+    def addStudent(self,student):
         file_path = 'data.json'
         if os.path.exists(file_path):
             with open(file_path, 'r', encoding='utf-8') as json_file:
                 try:
-                    existing_data = json.load(json_file)  # Đọc dữ liệu
-                    # Kiểm tra xem dữ liệu có phải là danh sách không
+                    existing_data = json.load(json_file) 
                     if not isinstance(existing_data, list):
-                        existing_data = []  # Nếu không phải, khởi tạo danh sách rỗng
+                        existing_data = []  
                 except json.JSONDecodeError:
-                    existing_data = []  # Nếu file rỗng hoặc không hợp lệ, khởi tạo danh sách rỗng
+                    existing_data = []  
         else:
-            existing_data = []  # Nếu file không tồn tại, khởi tạo danh sách rỗng
-
+            existing_data = []  
         existing_data.append(student.__dict__)
         with open('data.json', 'w', encoding='utf-8') as json_file:
             json.dump(existing_data, json_file, ensure_ascii=False, indent=4)
@@ -189,3 +191,24 @@ class MainBackend():
             for student in students:
                 print(student.language['language'])
                 self.manager.showStudent(student)
+    #Regex
+    def regexPhone(phone):
+        pattern = r'^(0[1-9]{1}[0-9]{8}|(0[1-9]{1}[0-9]{2}){1,2}[-.\s]?[0-9]{3}[-.\s]?[0-9]{3})$'
+        # Kiểm tra tên với regex
+        return re.match(pattern, phone) is not None
+    def regexAddress(add):
+        file_path = __file__  # Lấy đường dẫn của file hiện tại
+        directory_path = os.path.dirname(file_path)
+        file_path=os.path.join(directory_path, 'be/new2.csv')
+        df = pd.read_csv(file_path)
+        provinces = df['tinh'].tolist()
+        pattern = r'\b(?:' + '|'.join(map(re.escape, provinces)) + r')\b'
+        # Kiểm tra xem địa chỉ có chứa tên tỉnh hợp lệ không
+        if re.search(pattern, add):
+            return True
+        else:
+            return False
+    def regexName(name):
+        if len(name) >= 2:  
+            return name[0].isalpha()  
+        return False 
