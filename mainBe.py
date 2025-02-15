@@ -1,7 +1,8 @@
 from be.manageStudent import ManageStudent
 from be.student import Student
 from be.createData import createCC, createStudent , createName , createPhone
-
+import json
+import os
 class MainBackend():
     def __init__(self):
         self.manager = ManageStudent()
@@ -137,11 +138,49 @@ class MainBackend():
                 case _:
                     print("Chức năng không hợp lệ")
                     return
-    def createStudent():
-        manager = ManageStudent()
+    def createStudent(self):
         student = createStudent()
-        manager.add_student(student)
-        print('createStudent')
+        self.manager.add_student(student)
+        file_path = 'data.json'
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as json_file:
+                try:
+                    existing_data = json.load(json_file)  # Đọc dữ liệu
+                    # Kiểm tra xem dữ liệu có phải là danh sách không
+                    if not isinstance(existing_data, list):
+                        existing_data = []  # Nếu không phải, khởi tạo danh sách rỗng
+                except json.JSONDecodeError:
+                    existing_data = []  # Nếu file rỗng hoặc không hợp lệ, khởi tạo danh sách rỗng
+        else:
+            existing_data = []  # Nếu file không tồn tại, khởi tạo danh sách rỗng
+
+        existing_data.append(student.__dict__)
+        with open('data.json', 'w', encoding='utf-8') as json_file:
+            json.dump(existing_data, json_file, ensure_ascii=False, indent=4)
+        return True
+    def showSearchRs(self,id):
+        file_path = 'data.json'
+        with open(file_path, 'r', encoding='utf-8') as json_file:
+            students=json.load(json_file)
+        listRs=[]
+        if id.isdigit():
+            for s in students:
+                if id in s['id'] :
+                    listRs.append(s)
+        else:   
+            for s in students:
+                if id in s['name'] :
+                    listRs.append(s)
+        return listRs
+    def deleteStudent(self ,cccd):
+        file_path = 'data.json'
+        with open(file_path,'r', encoding='utf-8') as json_file:
+            students=json.load(json_file)
+        for i , s in enumerate(students):
+            if cccd in s['id']:
+                del students[i]
+        with open(file_path,'w', encoding='utf-8') as json_file:
+            json.dump(students, json_file, ensure_ascii=False, indent=4)
     def showList(self):
         students=self.manager.getListStudents()
         if len(students)==0:

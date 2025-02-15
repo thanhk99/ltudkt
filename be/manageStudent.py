@@ -15,12 +15,6 @@ class ManageStudent:
                 # Cập nhật thông tin mới
                 student.__dict__.update(new_info)
                 break
-
-    def delete_student(self, student_id):
-        for student in self.students:
-            if student.id == student_id:
-                self.students.remove(student)
-                return True
     def search_student(self, search_term):
         # Tìm kiếm theo ID hoặc số điện thoại
         return [s for s in self.students if s.id == search_term or s.phone == search_term]

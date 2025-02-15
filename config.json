@@ -5,7 +5,7 @@
       "height": 600
     },
     "database": {
-      "file_path": "data/students.json",
+      "file_path": "data.json",
       "auto_save": true
     },
     "languages": ["Tiếng Anh", "Tiếng Nhật", "Tiếng Hàn"],
