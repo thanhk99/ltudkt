@@ -212,3 +212,15 @@ class MainBackend():
         if len(name) >= 2:  
             return name[0].isalpha()  
         return False 
+    def regexId(id):
+        pattern = r'^\d{12}$'   
+        
+        file_path = 'data.json'
+        with open(file_path, 'r', encoding='utf-8') as json_file:
+            students=json.load(json_file)
+        listRs=[]
+        if id.isdigit():
+            for s in students:
+                if id in s['id'] :
+                    return False
+        return re.match(pattern, id) is not None  
