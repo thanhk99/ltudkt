@@ -51,7 +51,7 @@ def addStudent():
     course['language']=lang
     if lang== 'English':
         course['level_type']=ui.comboBox_4.currentText()
-        if course['level_type'] == 'IELTS' and  0< int(ui.lineEdit_5.text()) <10 and 0< int(ui.lineEdit_6.text()) <10:
+        if course['level_type'] == 'IELTS' and  0< float(ui.lineEdit_5.text()) <10 and 0< float(ui.lineEdit_6.text()) <10:
             course['level']=ui.lineEdit_5.text()
             course['goal']=ui.lineEdit_6.text()
         elif course['level_type'] == 'TOEFL' and  0< int(ui.lineEdit_5.text()) <120 and 0< int(ui.lineEdit_6.text()) <120:
